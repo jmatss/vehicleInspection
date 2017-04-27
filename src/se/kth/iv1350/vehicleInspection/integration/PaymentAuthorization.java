@@ -1,5 +1,7 @@
 package se.kth.iv1350.vehicleInspection.integration;
 
+import se.kth.iv1350.vehicleInspection.model.Inspection;
+import se.kth.iv1350.vehicleInspection.DTO.CreditCardDTO;
 /**
  * Hanterar alla calls till payment auth. systemet
  */

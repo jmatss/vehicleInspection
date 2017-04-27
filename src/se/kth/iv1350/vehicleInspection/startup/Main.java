@@ -1,5 +1,9 @@
 package se.kth.iv1350.vehicleInspection.startup;
 
+import se.kth.iv1350.vehicleInspection.integration.*;
+import se.kth.iv1350.vehicleInspection.view.View;
+import se.kth.iv1350.vehicleInspection.controller.Controller;
+
 /**
  * Startar programmet
  */

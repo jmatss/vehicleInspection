@@ -1,5 +1,6 @@
 package se.kth.iv1350.vehicleInspection.model;
 
+import se.kth.iv1350.vehicleInspection.DTO.VehicleDTO;
 /**
  * Denna klass tar hand om allting som har med en inspektion att göra
  */
@@ -42,6 +43,14 @@ public class Inspection {
      */
     private void setInspectionFinished(){
         this.inspectionFinished = true;
+    }
+    
+    /**
+     * Räknar antal parts som ska inspekteras. Används vid beräkning av cost.
+     * @return antal delar
+     */
+    public int amountOfPartsToInspect() {
+        return this.partsToInspect.length;
     }
     
     /**

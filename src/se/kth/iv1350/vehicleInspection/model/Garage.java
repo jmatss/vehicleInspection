@@ -8,13 +8,13 @@ public class Garage {
      * Öppnar garagedörren
      */
     public void openDoor() {
-        
+        System.out.println("Door open!");
     }
     
     /**
      * Stänger garagedörren
      */
     public void closeDoor() {
-        
+        System.out.println("Door closed!");
     }
 }

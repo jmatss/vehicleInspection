@@ -1,5 +1,6 @@
 package se.kth.iv1350.vehicleInspection.integration;
 
+import se.kth.iv1350.vehicleInspection.model.Inspection;
 /**
  * Sköter utskrifter av receipts och inspection results
  */

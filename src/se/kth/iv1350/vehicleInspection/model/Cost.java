@@ -19,7 +19,8 @@ public class Cost {
      * @param inspection Inspektionen som ska betalas
      */
     private void calculateCost(Inspection inspection) {
-        
+        // 10 kr per del
+        this.amount = (float)inspection.amountOfPartsToInspect() * 10;
     }
     
 }
