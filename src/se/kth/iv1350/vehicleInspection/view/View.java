@@ -12,7 +12,7 @@ public class View {
      * skapar view
      * @param contr ger view en referens till controllern
      */
-    View(Controller contr) {
+    public View(Controller contr) {
         this.contr = contr;
     }
     

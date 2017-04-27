@@ -6,7 +6,7 @@ package se.kth.iv1350.vehicleInspection.DTO;
 public class CreditCardDTO {
     private int number;
     
-    CreditCardDTO(int number) {
+    public CreditCardDTO(int number) {
         this.number = number;
     }
     

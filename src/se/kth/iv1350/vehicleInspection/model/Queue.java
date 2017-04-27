@@ -11,7 +11,7 @@ public class Queue {
      * Konstruktor för queuen
      * @param display Dsiplayen där currentnumber ska visas
      */
-    Queue(Display display) {
+     public Queue(Display display) {
         this.display = display;
         this.currentNumber = 0;
     }

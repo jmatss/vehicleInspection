@@ -15,7 +15,7 @@ public class Inspection {
      * @param vehicle Fordonet som ska inspekteras 
      * @param partsToInspect Delarna på fordonet som ska inspekteras
      */
-    Inspection(VehicleDTO vehicle, PartToInspect[] partsToInspect){
+    public Inspection(VehicleDTO vehicle, PartToInspect[] partsToInspect){
         this.vehicle = vehicle;
         this.partsToInspect = partsToInspect;
         currentPartToInspectIndex = 0;

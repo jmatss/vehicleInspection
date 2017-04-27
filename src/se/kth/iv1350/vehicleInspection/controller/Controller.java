@@ -19,7 +19,7 @@ public class Controller {
      * @param inspectionRegistry Tar hand om alla calls till databasen
      * @param paymentAuthorization Tar hand om alla calls till payment auth. systemet
      */
-    Controller(Printer printer, InspectionRegistry inspectionRegistry,
+    public Controller(Printer printer, InspectionRegistry inspectionRegistry,
             PaymentAuthorization paymentAuthorization) {
         this.printer = printer;
         this.inspectionRegistry =  inspectionRegistry;

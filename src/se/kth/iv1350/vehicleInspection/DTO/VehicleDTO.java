@@ -10,7 +10,7 @@ public class VehicleDTO {
      * Skapar ett vehicle
      * @param regNumber Registreringsnummer på fordonet
      */
-    VehicleDTO(String regNumber) {
+    public VehicleDTO(String regNumber) {
         this.regNumber = regNumber;
     }
     
