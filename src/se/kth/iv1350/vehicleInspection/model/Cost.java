@@ -10,17 +10,21 @@ public class Cost {
      * Skapar cost och räknar ut kostnaden
      * @param inspection Inspektionen som ska betalas
      */
-    Cost(Inspection inspection) {
-        calculateCost(inspection);
+    Cost(PartToInspect[] partsToInspect) {
+        calculateCost(partsToInspect);
+    }
+
+    /**
+     * returnar kostnadamount
+     * @return kostnaden
+     */
+    public float getAmount() {
+        return this.amount;
     }
     
-    /**
-     * Räknar ut kostanden för inspektionen
-     * @param inspection Inspektionen som ska betalas
-     */
-    private void calculateCost(Inspection inspection) {
-        // 10 kr per del
-        this.amount = (float)inspection.amountOfPartsToInspect() * 10;
+    private void calculateCost(PartToInspect[] partsToInspect) {
+        // 10 kr per del, bra pris
+        this.amount = (float)partsToInspect.length*10;
     }
     
 }

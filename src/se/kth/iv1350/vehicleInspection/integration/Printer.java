@@ -10,13 +10,13 @@ public class Printer {
      * @param inspection inspektionen som ska skrivas ut
      */
     public void printReceipt(Inspection inspection){
-    
+        System.out.println("Receipt har skrivits ut!");
     }
     /**
      * Skriver ut inspekationsresultat
      * @param inspection inspektionen som ska skrivas ut
      */
     public void printResult(Inspection inspection){
-        
+        System.out.println("Inspection results har skrivits ut!");
     }
 }

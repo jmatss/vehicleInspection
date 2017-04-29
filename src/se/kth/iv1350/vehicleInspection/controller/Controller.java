@@ -1,9 +1,10 @@
 package se.kth.iv1350.vehicleInspection.controller;
 
-import se.kth.iv1350.vehicleInspection.model.Inspection;
-import se.kth.iv1350.vehicleInspection.model.PartToInspect;
 import se.kth.iv1350.vehicleInspection.integration.*;
 import se.kth.iv1350.vehicleInspection.DTO.*;
+import se.kth.iv1350.vehicleInspection.model.*;
+
+
 
 /**
  * Controllern hanterar alla calls mellan view och resten av programmet
@@ -12,6 +13,9 @@ public class Controller {
     private Printer printer;
     private InspectionRegistry inspectionRegistry;
     private PaymentAuthorization paymentAuthorization;
+    private Garage garage;
+    private Queue queue;
+    private Inspection currentInspection;
     
     /**
      * Skapar controllern och ger den referenser till objekt som den måste ha koll på
@@ -24,40 +28,63 @@ public class Controller {
         this.printer = printer;
         this.inspectionRegistry =  inspectionRegistry;
         this.paymentAuthorization = paymentAuthorization;
+        
+        this.garage = new Garage();
+        this.queue = new Queue(new Display());
+    }
+    
+    /**
+     * Öppnar garagedörren och uppdaterar kön samt displayen
+     */
+    public void nextCustomer() {
+        this.garage.openDoor();
+        this.queue.updateQueue();
+        
     }
     
     /**
      * Öppnar garagedörren
      */
     public void openDoor() {
-        
+        this.garage.openDoor();
     }
     
     /**
      * Stänger garagedörren
      */
     public void closeDoor() {
-        
+        this.garage.closeDoor();
     }
     
     /**
-     * Hittar inspektioner som ska göras för fordonet och beräknar kostnaden som
-     * returnas till denna metod.
+     * Hittar inspektion som ska göras för fordonet
      * @param vehicle Fordonet som ska inspekteras
      * @return Kostnaden för inspektionen
      */
-    public Cost returnCostOfInspection(VehicleDTO vehicle) {
-        
+    public Cost calculateAndReturnCostOfInspection(VehicleDTO vehicle) {
+        this.currentInspection = this.inspectionRegistry.findInspection(vehicle);
+
+        return this.currentInspection.getCost();
+    }
+    
+    public void printReceipt() {
+        this.printer.printReceipt(this.currentInspection);
+    }
+    
+    public void printResult() {
+        this.printer.printResult(this.currentInspection);
     }
     
     /**
      * Betalning av inspektion
      * @param card Kreditkortsinformation
-     * @param inspection Inspektionen som ska betalas
+     * @param cost Kostnaden som ska betalas
      * @return True om betalningen gjordes, false om något gick fel
      */
-    public boolean payment(CreditCardDTO card, Inspection inspection) {
+    public boolean payment(CreditCardDTO card) {
+        boolean authorized = paymentAuthorization.authorizePayment(card, this.currentInspection.getCost());
         
+        return authorized;
     }
     
     /**
@@ -65,8 +92,8 @@ public class Controller {
      * @param inspection Inspektionen som genomförs
      * @return Delen som ska inspekteras
      */
-    public PartToInspect whatToInspect(Inspection inspection) {
-        
+    public PartToInspect whatToInspect() {
+        return this.currentInspection.getNextPartToInspect();
     }
     
     /**
@@ -74,15 +101,22 @@ public class Controller {
      * @param inspection inspektionen som genomförs
      * @param partToInspect Delen som har godkänts
      */
-    public void setPass(Inspection inspection, PartToInspect partToInspect) {
-        
+    public void setPass(PartToInspect partToInspect) {
+        this.currentInspection.setPass(partToInspect);
+    }
+    
+    /**
+     * Sätter inspektionen till avklarad
+     */
+    public void setInspectionFinished() {
+        this.currentInspection.setInspectionFinished();
     }
     
     /**
      * Sparar en inspektion i databasen
      * @param inspection inspektionen som ska sparas
      */
-    public void saveInspection(Inspection inspection) {
-        
+    public void saveInspection() {
+        this.inspectionRegistry.saveInspection(this.currentInspection);
     }
 }

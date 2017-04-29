@@ -15,5 +15,7 @@ public class Main {
         
         Controller contr = new Controller(printer, inspectionRegistry, paymentAuthorization);
         
+        View view = new View(contr);
+        view.hardcodedCallsFromView();
     }
 }

@@ -9,8 +9,17 @@ public class Display {
     /**
      * Skapar displayen och sätter den till 0
      */
-    Display() {
+    public Display() {
         numberOnDisplay = 0;
+    }
+    
+    /**
+     * returnar numret på skärmen
+     * @return numret som visas på skärmen
+     */
+    
+    public int getNumberOnDisplay() {
+        return this.numberOnDisplay;
     }
     
     /**
@@ -19,6 +28,6 @@ public class Display {
      */
     void showOnDisplay(int currentNumber) {
         this.numberOnDisplay = currentNumber;
-        // VISA TEXT
+        System.out.println("Displaynummer uppdaterat till: " + this.numberOnDisplay);
     }
 }

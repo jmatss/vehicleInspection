@@ -16,6 +16,10 @@ public class Queue {
         this.currentNumber = 0;
     }
     
+     /**
+      * returnar nuvarande könummer
+      * @return nuvarande könummer
+      */
     public int getCurrentNumber(){
         return this.currentNumber;
     }
@@ -24,6 +28,6 @@ public class Queue {
      * Uppdaterar currentNumber och skriver det till displayen
      */
     public void updateQueue() {
-        this.currentNumber++;
+        this.display.showOnDisplay(++this.currentNumber);
     }
 }

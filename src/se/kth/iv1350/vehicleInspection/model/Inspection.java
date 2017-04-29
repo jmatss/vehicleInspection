@@ -8,7 +8,8 @@ public class Inspection {
     private VehicleDTO vehicle;
     private PartToInspect[] partsToInspect;
     private int currentPartToInspectIndex;
-    private boolean inspectionFinished = false;
+    private boolean inspectionFinished;
+    private Cost cost;
    
     /**
      * Konstruktor för inspection
@@ -18,7 +19,52 @@ public class Inspection {
     public Inspection(VehicleDTO vehicle, PartToInspect[] partsToInspect){
         this.vehicle = vehicle;
         this.partsToInspect = partsToInspect;
-        currentPartToInspectIndex = 0;
+        this.currentPartToInspectIndex = 0;
+        this.inspectionFinished = false;
+        
+        this.cost = new Cost(partsToInspect);
+    }
+    
+    /**
+     * Jämför två inspektioner
+     * @param obj ska jämföras med detta objekt
+     * @return true om inspektionerna är lika, false om dom är olika
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Inspection))
+            return false;
+        Inspection inspection = (Inspection)obj;
+        
+        // jämför regnummer
+        if (!(this.vehicle.equals(inspection.getVehicle())))
+            return false;
+        
+        // jämför antal delar
+        int amountOfPartsInThisInspection = 0;
+        int amountOfPartsInParamInspection = 0;
+        
+        while (this.getNextPartToInspect() != null)
+            amountOfPartsInThisInspection++;
+        
+        while (inspection.getNextPartToInspect() != null)
+            amountOfPartsInParamInspection++;
+        
+        if (amountOfPartsInThisInspection != amountOfPartsInParamInspection)
+            return false;
+        
+        // jämför namn på delarna
+        PartToInspect currentPartFromThisInspection;
+        PartToInspect currentPartFromParamInspection;
+        
+        while ((currentPartFromThisInspection = this.getNextPartToInspect()) != null
+              && (currentPartFromParamInspection = inspection.getNextPartToInspect()) != null) {
+            
+            if (!(currentPartFromThisInspection.equals(currentPartFromParamInspection)))
+                return false;
+        }
+        
+        return true;
     }
     
     /**
@@ -41,16 +87,8 @@ public class Inspection {
     /**
      * Sätter inspectionFinished till true, alltså att den har genomförts
      */
-    private void setInspectionFinished(){
+    public void setInspectionFinished(){
         this.inspectionFinished = true;
-    }
-    
-    /**
-     * Räknar antal parts som ska inspekteras. Används vid beräkning av cost.
-     * @return antal delar
-     */
-    public int amountOfPartsToInspect() {
-        return this.partsToInspect.length;
     }
     
     /**
@@ -59,29 +97,31 @@ public class Inspection {
      * @return returnar partToInspect på index currentPartToInspectIndex
      */
     public PartToInspect getNextPartToInspect(){
-        
+        if (this.currentPartToInspectIndex > this.partsToInspect.length -1) {
+            this.currentPartToInspectIndex = 0;
+            return null;
+        }
+        return this.partsToInspect[this.currentPartToInspectIndex++];
     }
     
     /**
-     * Sätter pass eller fail på del som har inspekterats
+     * Sätter pass på del som har inspekterats
      * @param partToInspect parten som har inspekterats
-     * @param result true = pass, false = fail
      */
-    public void setPassOrFail(PartToInspect partToInspect, boolean result) {
-        
+    public void setPass(PartToInspect partToInspect) {
+        for (int i = 0; i < this.partsToInspect.length; i++) {
+            if (partToInspect.equals(partsToInspect[i])) {
+                partsToInspect[i].setPass();
+                break;
+            }
+        }
     }
-    
+
     /**
-     * Skickar resultat till printer för utskrift
+     * 
+     * @return en referens till cost objektet
      */
-    public void printResult () {
-        
-    }
-    
-    /**
-     * Skickar receipt till printer för utskrift
-     */
-    public void printReceipt() {
-        
+    public Cost getCost() {
+        return this.cost;
     }
 }
