@@ -8,6 +8,10 @@ import se.kth.iv1350.vehicleInspection.controller.Controller;
  * Startar programmet
  */
 public class Main {
+    /**
+     * Skapar "grundobjekten" och startar programmet
+     * @param args Programmet har inga in argument
+     */
     public static void main(String[] args){
         Printer printer = new Printer();
         InspectionRegistry inspectionRegistry = new InspectionRegistry();

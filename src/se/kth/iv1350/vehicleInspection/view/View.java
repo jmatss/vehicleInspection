@@ -33,7 +33,9 @@ public class View {
         
         // rad 6-8
         System.out.println("VIEW in: Inspektör skriver in regnummer");
-        String regNumber = "XYZ789";
+        String regNumber = "ABC123";
+        //String regNumber = "XYZ789";
+        
         VehicleDTO vehicle = new VehicleDTO(regNumber);
         Cost cost = this.contr.calculateAndReturnCostOfInspection(vehicle);
         System.out.println("VIEW out: Kostnad för denna inspektion(regnr "

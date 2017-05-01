@@ -63,14 +63,19 @@ public class Controller {
      */
     public Cost calculateAndReturnCostOfInspection(VehicleDTO vehicle) {
         this.currentInspection = this.inspectionRegistry.findInspection(vehicle);
-
         return this.currentInspection.getCost();
     }
     
+    /**
+     * Skriver ut receipt för nuvarande inspektion
+     */
     public void printReceipt() {
         this.printer.printReceipt(this.currentInspection);
     }
     
+    /**
+     * Skriver ut inspektionsresultat för nuvarande inspektion
+     */
     public void printResult() {
         this.printer.printResult(this.currentInspection);
     }
@@ -78,18 +83,15 @@ public class Controller {
     /**
      * Betalning av inspektion
      * @param card Kreditkortsinformation
-     * @param cost Kostnaden som ska betalas
      * @return True om betalningen gjordes, false om något gick fel
      */
     public boolean payment(CreditCardDTO card) {
-        boolean authorized = paymentAuthorization.authorizePayment(card, this.currentInspection.getCost());
-        
+        boolean authorized = this.paymentAuthorization.authorizePayment(card, this.currentInspection.getCost());
         return authorized;
     }
     
     /**
      * Hämtar nästa del som ska inspekteras
-     * @param inspection Inspektionen som genomförs
      * @return Delen som ska inspekteras
      */
     public PartToInspect whatToInspect() {
@@ -98,7 +100,6 @@ public class Controller {
     
     /**
      * Godkänner delen som har inspekterats
-     * @param inspection inspektionen som genomförs
      * @param partToInspect Delen som har godkänts
      */
     public void setPass(PartToInspect partToInspect) {
@@ -114,7 +115,6 @@ public class Controller {
     
     /**
      * Sparar en inspektion i databasen
-     * @param inspection inspektionen som ska sparas
      */
     public void saveInspection() {
         this.inspectionRegistry.saveInspection(this.currentInspection);

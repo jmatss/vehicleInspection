@@ -40,6 +40,6 @@ public class InspectionRegistry {
      * @param inspection Inspektionen som ska sparas
      */
     public void saveInspection(Inspection inspection) {
-        System.out.println("Resultat sparade i databasen!");
+        System.out.println("Resultat sparat i databasen!");
     }
 }

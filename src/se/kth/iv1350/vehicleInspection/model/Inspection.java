@@ -92,8 +92,9 @@ public class Inspection {
     }
     
     /**
-     * Hämtar "parten" på index currentPartToInspectIndex och går ökar sedan
-     * variabeln med ett så att den pekar på nästa part
+     * Hämtar "parten" på index currentPartToInspectIndex och ökar sedan
+     * variabeln med ett så att den pekar på nästa part. Börjar om från början
+     * och returar null när den nått slutet på arrayen.
      * @return returnar partToInspect på index currentPartToInspectIndex
      */
     public PartToInspect getNextPartToInspect(){

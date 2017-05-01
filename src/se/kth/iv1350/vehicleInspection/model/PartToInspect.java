@@ -8,8 +8,8 @@ public class PartToInspect {
     private boolean result;
     
     /**
-     * Skapar en del och sätter delen till icke godkänd
-     * @param name 
+     * Skapar en del och sätter den till icke godkänd
+     * @param name namn på delen
      */
     public PartToInspect(String name) {
         this.name = name;

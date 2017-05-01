@@ -17,7 +17,7 @@ public class Queue {
     }
     
      /**
-      * returnar nuvarande könummer
+      *
       * @return nuvarande könummer
       */
     public int getCurrentNumber(){

@@ -1,7 +1,7 @@
 package se.kth.iv1350.vehicleInspection.model;
 
 /**
- * Visar currentNumber
+ * Visar currentNumber på en skärm
  */
 public class Display {
     private int numberOnDisplay;
@@ -10,14 +10,13 @@ public class Display {
      * Skapar displayen och sätter den till 0
      */
     public Display() {
-        numberOnDisplay = 0;
+        this.numberOnDisplay = 0;
     }
     
     /**
      * returnar numret på skärmen
      * @return numret som visas på skärmen
      */
-    
     public int getNumberOnDisplay() {
         return this.numberOnDisplay;
     }
