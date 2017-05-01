@@ -7,28 +7,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- */
 public class MainTest {
-    @Before
-    public void setUp() {
-    }
     
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of main method, of class Main.
-     */
-    @Test
-    public void testMain() {
-        System.out.println("main");
-        String[] args = null;
-        Main.main(args);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+    // Hittar inget bra  att testa här
     
 }
