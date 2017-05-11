@@ -133,13 +133,12 @@ public class InspectionTest {
      * Test of setPass method, of class Inspection.
      */
     @Test
-    public void testSetPass() {
+    public void testSetResult() {
+        boolean partInspectionResult = true;
+        this.instance.setResult(this.partsToInspect[0], partInspectionResult);
         
-        this.instance.setPass(this.partsToInspect[0]);
-        /*
-            Finns ingen publik funktion som inspectionklassen kan använda för att
-            se om resultatet sätts rätt.
-        */
+        boolean result = this.partsToInspect[0].getResult();
+        assertTrue("Resultat för en delinspektion sätts inte korrekt!", result);
     }
 
     /**

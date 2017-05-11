@@ -1,5 +1,7 @@
 package se.kth.iv1350.vehicleInspection.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -10,6 +12,7 @@ import se.kth.iv1350.vehicleInspection.integration.InspectionRegistry;
 import se.kth.iv1350.vehicleInspection.integration.PaymentAuthorization;
 import se.kth.iv1350.vehicleInspection.integration.Printer;
 import se.kth.iv1350.vehicleInspection.model.Cost;
+import se.kth.iv1350.vehicleInspection.model.Garage;
 import se.kth.iv1350.vehicleInspection.model.PartToInspect;
 
 public class ControllerTest {
@@ -36,11 +39,46 @@ public class ControllerTest {
         this.instance = null;
     }
 
-    /*
-        Det finns många metoder i denna klass som jag inte vet hur jag ska testa.
-        Metoderna returnar ingenting och ändrar endast värden i klasser som
-        jag inte kan komma åt från controllklassen. Skriver mer i diskussionsdelen.
-    */
+    @Test
+    public void testOpenDoor() {
+        PrintStream originalSysout = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+        
+        this.instance.openDoor();
+
+        String expResult = "Door open!";
+        String result = outContent.toString();
+
+        assertTrue("Texten skrivs inte korrekt till system.out!", result.contains(expResult));
+        outContent = null;
+        System.setOut(originalSysout);
+    }
+    
+    @Test
+    public void testCloseDoor() {
+        PrintStream originalSysout = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        this.instance.closeDoor();
+
+        String expResult = "Door closed!";
+        String result = outContent.toString();
+
+        assertTrue("Texten skrivs inte korrekt till system.out!", result.contains(expResult));
+        outContent = null;
+        System.setOut(originalSysout);
+    }
+    
+    @Test
+    public void testNextCustomer() {
+        this.instance.nextCustomer();
+        int result = this.instance.getCurrentQueueNumber();
+        int expResult = 1;
+        assertEquals("Könumret uppdaterades inte korrekt!", result, expResult);
+    }
+    
     /**
      * Test of calculateAndReturnCostOfInspection method, of class Controller.
      */

@@ -109,10 +109,10 @@ public class Inspection {
      * Sätter pass på del som har inspekterats
      * @param partToInspect parten som har inspekterats
      */
-    public void setPass(PartToInspect partToInspect) {
+    public void setResult(PartToInspect partToInspect, boolean result) {
         for (int i = 0; i < this.partsToInspect.length; i++) {
             if (partToInspect.equals(partsToInspect[i])) {
-                partsToInspect[i].setPass();
+                partsToInspect[i].setResult(result);
                 break;
             }
         }

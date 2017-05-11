@@ -3,6 +3,7 @@ package se.kth.iv1350.vehicleInspection.integration;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import java.io.*;
 import static org.junit.Assert.*;
 import se.kth.iv1350.vehicleInspection.DTO.VehicleDTO;
 import se.kth.iv1350.vehicleInspection.model.Inspection;
@@ -66,7 +67,23 @@ public class InspectionRegistryTest {
      */
     @Test
     public void testSaveInspection() {
-           // finns inget att testa här, skriver bara ut till System.out!
+        PrintStream originalSysout = System.out;
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        PartToInspect[] partsToInspect = new PartToInspect[1];
+        partsToInspect[0] = new PartToInspect("brakes");
+        
+        Inspection inspection = new Inspection(null, partsToInspect);
+        InspectionRegistry instance = new InspectionRegistry();
+        instance.saveInspection(inspection);
+
+        String expResult = "Resultat sparat i databasen!";
+        String result = outContent.toString();
+        assertTrue("Texten skrivs inte korrekt till system.out!", result.contains(expResult));
+
+        outContent = null;
+        System.setOut(originalSysout);
     }
     
 }

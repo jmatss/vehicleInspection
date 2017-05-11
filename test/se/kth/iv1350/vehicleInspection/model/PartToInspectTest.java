@@ -37,9 +37,9 @@ public class PartToInspectTest {
      * Test of setPass method, of class PartToInspect.
      */
     @Test
-    public void testSetPass() {
+    public void testSetResult() {
         PartToInspect instance = new PartToInspect("brakes");
-        instance.setPass();
+        instance.setResult(true);
         
         boolean expResult = true;
         boolean result = instance.getResult();

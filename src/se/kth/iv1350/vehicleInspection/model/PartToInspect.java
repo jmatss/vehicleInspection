@@ -49,7 +49,7 @@ public class PartToInspect {
     /**
      * Godkänner denna del
      */
-    public void setPass() {
-        this.result = true;
+    public void setResult(boolean result) {
+        this.result = result;
     }
 }

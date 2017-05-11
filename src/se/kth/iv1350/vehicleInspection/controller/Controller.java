@@ -99,11 +99,19 @@ public class Controller {
     }
     
     /**
+     * 
+     * @return nuvarande könumret
+     */
+    public int getCurrentQueueNumber() {
+        return this.queue.getCurrentNumber();
+    }
+    
+    /**
      * Godkänner delen som har inspekterats
      * @param partToInspect Delen som har godkänts
      */
-    public void setPass(PartToInspect partToInspect) {
-        this.currentInspection.setPass(partToInspect);
+    public void setResult(PartToInspect partToInspect, boolean result) {
+        this.currentInspection.setResult(partToInspect, result);
     }
     
     /**

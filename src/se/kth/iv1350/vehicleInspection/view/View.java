@@ -50,17 +50,16 @@ public class View {
         
         // rad 13-17
         PartToInspect partToInspect;
-        boolean passed = true;
+        boolean resultOfPartInspectionPassed = true;
         
-        // loopar igenom alla delar och sätter resultatet till true(godkänt).
-        // Om inspektionen av en del inte blir godkänd behövs ingen kod köras,
-        // eftersom att partToInspect blev satt till icke godkänd("fail") när den skapades
+        // loopar igenom alla delar och sätter resultatet.
+        // I detta exempel sätts alla delar till true
+        // men det ska egentligen matas in manuellt(pass eller fail) av inspektören.
         while ((partToInspect = this.contr.whatToInspect()) != null) {
             System.out.println("VIEW in/out: Inspektör frågar vilken del som ska inspekteras,"
                     + " får tilbaka: " + partToInspect.getName());
-            
-            if(passed)
-                this.contr.setPass(partToInspect);
+
+            this.contr.setResult(partToInspect, resultOfPartInspectionPassed);
             
             System.out.println("VIEW in: delinspektion godkänd(" + partToInspect.getName()
                     + ", Pass: " + partToInspect.getResult() + ")");
